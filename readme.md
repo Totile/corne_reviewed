@@ -10,9 +10,9 @@ Hardware Availability: [splitkb.com](https://splitkb.com).
 
 # Using the software
 
-[Set up QMK](https://docs.qmk.fm/#/getting_started_build_tools first) (no need to fork the project, on will not contribute using this repo) first. Then clone this folder into `qmk_firmware/keyboards`
+[Set up QMK](https://docs.qmk.fm/#/getting_started_build_tools) first (no need to fork the project, one will not contribute using this repo). Then clone this folder into `qmk_firmware/keyboards`
     cd qmk_firmware/keyboards/
-    git clone 
+    git clone git@github.com:Totile/corne_reviewed.git
 
 # My addition
 
@@ -24,5 +24,5 @@ The main modification were made to `rules.mk` to ensure compatibility with Cater
 
 ## Keymaps
 
-- totile_corne and totile_corne_mac: unstable versions based on the Unicode features of QMK. This was not OS-agnostic and was hard to ship to Windows or Mac.
-- vf (version finale): keymap using the US international layout to ensure basic French features (missigng the œ though). Current version to like
+- *totile_corne* and *totile_corne_mac*: unstable versions based on the Unicode features of QMK. This was not OS-agnostic and was hard to ship to Windows or Mac.
+- *vf* (version finale): keymap using the US international layout to ensure basic French features (missigng the œ though). Current version to use.
