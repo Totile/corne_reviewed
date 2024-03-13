@@ -11,6 +11,7 @@ Hardware Availability: [splitkb.com](https://splitkb.com).
 # Using the software
 
 [Set up QMK](https://docs.qmk.fm/#/getting_started_build_tools) first (no need to fork the project, one will not contribute using this repo). Then clone this folder into `qmk_firmware/keyboards`
+
     cd qmk_firmware/keyboards/
     git clone git@github.com:Totile/corne_reviewed.git
 
