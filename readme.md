@@ -15,7 +15,11 @@ Hardware Availability: [splitkb.com](https://splitkb.com).
     cd qmk_firmware/keyboards/
     git clone git@github.com:Totile/corne_reviewed.git
 
-# My addition
+Then flash firmware to the controller (enter bootloader by clicking twice the reset button)
+
+    qmk flash -kb corne_reviewed -km vf
+
+# My addition
 
 The base template of this folder is the one provided by Splitkb.
 
