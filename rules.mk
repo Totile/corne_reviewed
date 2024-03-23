@@ -15,3 +15,5 @@
 
 DEFAULT_FOLDER = splitkb/aurora/corne/rev1
 BOOTLOADER = caterina
+
+MOUSEKEY_ENABLE = yes
