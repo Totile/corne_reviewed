@@ -13,7 +13,7 @@
 # You should have received a copy of the GNU General Public License
 # along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
-DEFAULT_FOLDER = totile/corne_reviewed/rev1
+DEFAULT_FOLDER = totile/corne_v2/rev1
 BOOTLOADER = caterina
 
 MOUSEKEY_ENABLE = yes
