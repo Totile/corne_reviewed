@@ -29,6 +29,7 @@ enum layers {
 enum custom_keycodes {
   CS_EACG = SAFE_RANGE,
   CS_EACC,
+  CS_AACG,
   CS_QUOT,
   CS_DCIR,
   CS_DTIL,
@@ -62,7 +63,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       US_CCED,    KC_A,    KC_U,    KC_I,    KC_E, KC_COMM,                         KC_C,    KC_T,    KC_S,    KC_R,    KC_N,    KC_M,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      CS_EACC, US_AACU,    KC_Y,    KC_X,  KC_DOT,    KC_K,                      CS_QUOT,   KC_Q,     KC_G,    KC_H,    KC_F,    KC_W,
+      CS_EACC, CS_AACG,    KC_Y,    KC_X,  KC_DOT,    KC_K,                      CS_QUOT,   KC_Q,     KC_G,    KC_H,    KC_F,    KC_W,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           L_ALTSP, KC_LSFT, L_FUNPA,    L_SYMBO,  KC_SPC, L_NAVPA
     ),
@@ -84,14 +85,14 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
        KC_ESC, _______, US_UACU, US_DIAE, US_EURO, _______,                      _______, US_COPY,   US_SS, US_REGD, US_DTIL,  KC_ENT,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-       KC_DEL,   US_AE, US_MICR, _______, _______, _______,                      KC_QUOT, _______, _______, _______, _______, _______,
+       KC_DEL,   US_AE, US_MICR, _______, _______, _______,                      KC_QUOT, _______, _______, _______, _______,  KC_INS,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______,  _______, _______
     ),
 
     [_SYMBOL] = LAYOUT_split_3x6_3(
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      KC_PLUS, KC_PIPE,  CS_GRV, KC_HASH, HR_C_SL, KC_ASTR,                      CS_DCIR, KC_LBRC, KC_RBRC, US_LDAQ, US_RDAQ, _______, 
+      KC_PLUS, KC_PIPE,  CS_GRV, KC_HASH, HR_C_SL, KC_ASTR,                      CS_DCIR, KC_LBRC, KC_RBRC, US_LDAQ, US_RDAQ, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
       KC_MINS, KC_EXLM,   KC_AT, KC_UNDS, KC_BSLS, KC_SCLN,                      CS_DQUO, KC_LPRN, KC_RPRN, KC_LABK, KC_RABK,  KC_DLR,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
@@ -103,11 +104,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
     [_FUNPAD] = LAYOUT_split_3x6_3(
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   KC_F7,   KC_F8,   KC_F9, _______, _______,                      _______, _______, _______, _______, KC_WH_U, _______,
+       KC_F10,   KC_F7,   KC_F8,   KC_F9, _______, _______,                      _______, _______, _______, _______, KC_WH_U, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   KC_F4,   KC_F5,   KC_F6, KC_BTN1, KC_BTN2,                      KC_MS_U, KC_MS_D, KC_MS_L, KC_MS_R, KC_WH_D, _______,
+       KC_F11,   KC_F4,   KC_F5,   KC_F6, KC_BTN1, KC_BTN2,                      KC_MS_U, KC_MS_D, KC_MS_L, KC_MS_R, KC_WH_D, _______,
   //|--------+--------+--------+--------+--------+--------|                    |--------+--------+--------+--------+--------+--------|
-      _______,   KC_F1,   KC_F2,   KC_F3, KC_BTN3,    KC_Z,                      _______, _______, KC_WH_L, KC_WH_R, _______, _______,
+       KC_F12,   KC_F1,   KC_F2,   KC_F3, KC_BTN3,    KC_Z,                      _______, _______, KC_WH_L, KC_WH_R, _______, _______,
   //|--------+--------+--------+--------+--------+--------+--------|  |--------+--------+--------+--------+--------+--------+--------|
                                           _______, _______, _______,    _______,  _______, _______
     ),
@@ -117,10 +118,16 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 };
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
-    switch (keycode) {             
+    switch (keycode) {
         case CS_EACG:
             if (record->event.pressed) {
                 SEND_STRING(SS_TAP(X_GRAVE) "e");
+            }
+            return false;
+
+       case CS_AACG:
+            if (record->event.pressed) {
+                SEND_STRING(SS_TAP(X_GRAVE) "a");
             }
             return false;
 
@@ -141,7 +148,7 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
                 SEND_STRING(SS_LSFT("6") SS_TAP(X_SPC));
             }
             return false;
-        
+
         case CS_DTIL:
             if (record->event.pressed) {
                 SEND_STRING(SS_DOWN(X_LSFT) SS_TAP(X_GRAVE) SS_UP(X_LSFT) SS_TAP(X_SPC));
